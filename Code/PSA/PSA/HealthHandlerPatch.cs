@@ -38,7 +38,33 @@ namespace PSA.Patches
             if (damagingPlayer != null && player.data.stats.GetAdditionalData().thorns > 0)
                 damagingPlayer.data.healthHandler.DoDamage(damage * player.data.stats.GetAdditionalData().thorns, Vector2.down, Color.green, null, null, false, false, true);
             if (damagingPlayer != null && damagingPlayer.data.stats.GetAdditionalData().thorns > 0 && damagingPlayer.data.stats.GetAdditionalData().selfThorns)
-                damagingPlayer.data.healthHandler.DoDamage(damage * damagingPlayer.data.stats.GetAdditionalData().thorns, Vector2.down, Color.green, null, null, false, false, true);
+                damagingPlayer.data.healthHandler.DoDamage(damage * (damagingPlayer.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent), Vector2.down, Color.green, null, null, false, false, true);
+        }
+    }
+
+    [Serializable]
+    [HarmonyPatch(typeof(HealthHandler), "Heal")]
+    class HealingPatch
+    {
+        private static void Prefix(HealthHandler __instance, ref float healAmount)
+        {
+            Vector2 damage;
+            Player player = (Player)__instance.GetFieldValue("player");
+            if (player.data.stats.GetAdditionalData().healDmg == true)
+            {
+                if (player.data.stats.GetAdditionalData().healDmgPercent > 0)
+                    damage = Vector2.down * (healAmount * player.data.stats.GetAdditionalData().healDmgPercent);
+                else
+                    damage = Vector2.down * (healAmount);
+                healAmount = 0;
+                __instance.DoDamage(damage, Vector2.down, Color.red, null, null, false, false, true);
+            }
+            if (player.data.stats.GetAdditionalData().noHeal)
+                healAmount = 0;
+            if (player.data.stats.GetAdditionalData().healReduction > 0)
+                healAmount /= player.data.stats.GetAdditionalData().healReduction;
+            else
+                healAmount = 0;
         }
     }
 }

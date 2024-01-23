@@ -9,21 +9,23 @@ namespace PSA.Extensions
     public class CharacterStatModifiersAdditionalData
     {
         public bool healDmg;
-        public bool noHeal;
+        public float healDmgPercent;
+        public float healReduction;
         public float damageReduction;
-        public float damageMult;
-        public float damageMultMax;
         public float thorns;
         public bool selfThorns;
+        public float selfThornsPercent;
+        public bool noHeal;
         public CharacterStatModifiersAdditionalData()
         {
             healDmg = false;
-            noHeal = false;
+            healDmgPercent = 1f;
+            healReduction = 1f;
             damageReduction = 1f;
-            damageMult = 1f;
-            damageMultMax = 1f;
             thorns = 0f;
             selfThorns = false;
+            selfThornsPercent = 1f;
+            noHeal = false;
         }
     }
     public static class CharacterStatModifiersExtension
@@ -50,10 +52,13 @@ namespace PSA.Extensions
         private static void Prefix(CharacterStatModifiers __instance)
         {
             __instance.GetAdditionalData().healDmg = false;
-            __instance.GetAdditionalData().noHeal = false;
+            __instance.GetAdditionalData().healReduction = 1f;
+            __instance.GetAdditionalData().healDmgPercent = 1f;
             __instance.GetAdditionalData().damageReduction = 1f;
             __instance.GetAdditionalData().thorns = 0f;
             __instance.GetAdditionalData().selfThorns = false;
+            __instance.GetAdditionalData().selfThornsPercent = 1f;
+            __instance.GetAdditionalData().noHeal = false;
         }
     }
 }
