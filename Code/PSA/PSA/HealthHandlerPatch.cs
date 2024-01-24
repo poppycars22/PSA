@@ -14,7 +14,7 @@ namespace PSA.Patches
         // patch for Totem and Damage Reduction
         private static void Prefix(HealthHandler __instance, ref Vector2 damage, Vector2 position, Color blinkColor, GameObject damagingWeapon, Player damagingPlayer, bool healthRemoval, ref bool lethal, bool ignoreBlock)
         {
-
+            float temp =1;
             CharacterData data = (CharacterData)Traverse.Create(__instance).Field("data").GetValue();
             Player player = data.player;
             if (!data.isPlaying)
@@ -29,16 +29,16 @@ namespace PSA.Patches
             {
                 return;
             }
-
-            if (player.data.stats.GetAdditionalData().damageReduction > 1 && ignoreBlock)
-                damage /= player.data.stats.GetAdditionalData().damageReduction * 0.5f;
-            else if (player.data.stats.GetAdditionalData().damageReduction > 0)
-                damage /= player.data.stats.GetAdditionalData().damageReduction;
-
+            if (player.data.stats.GetAdditionalData().damageReduction > 1)
+                temp = player.data.stats.GetAdditionalData().damageReduction - (player.data.stats.GetAdditionalData().damageReduction * Math.Clamp(player.data.stats.GetAdditionalData().reductionPierce, 0, float.MaxValue));
+            else
+                temp = player.data.stats.GetAdditionalData().damageReduction;
+            if (temp > 0)
+                damage /= temp;
             if (damagingPlayer != null && player.data.stats.GetAdditionalData().thorns > 0)
-                damagingPlayer.data.healthHandler.DoDamage(damage * player.data.stats.GetAdditionalData().thorns, Vector2.down, Color.green, null, null, false, false, true);
+                damagingPlayer.data.healthHandler.DoDamage(damage * player.data.stats.GetAdditionalData().thorns*Math.Clamp(player.data.stats.GetAdditionalData().thornsPercent,0,float.MaxValue), Vector2.down, Color.green, null, null, false, false, true);
             if (damagingPlayer != null && damagingPlayer.data.stats.GetAdditionalData().thorns > 0 && damagingPlayer.data.stats.GetAdditionalData().selfThorns)
-                damagingPlayer.data.healthHandler.DoDamage(damage * (damagingPlayer.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent), Vector2.down, Color.green, null, null, false, false, true);
+                damagingPlayer.data.healthHandler.DoDamage(damage * (damagingPlayer.data.stats.GetAdditionalData().thorns*Math.Clamp(damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent,0,float.MaxValue)), Vector2.down, Color.green, null, null, false, false, true);
         }
     }
 

@@ -12,9 +12,11 @@ namespace PSA.Extensions
         public float healDmgPercent;
         public float healReduction;
         public float damageReduction;
+        public float reductionPierce;
         public float thorns;
         public bool selfThorns;
         public float selfThornsPercent;
+        public float thornsPercent;
         public bool noHeal;
         public CharacterStatModifiersAdditionalData()
         {
@@ -22,7 +24,9 @@ namespace PSA.Extensions
             healDmgPercent = 1f;
             healReduction = 1f;
             damageReduction = 1f;
+            reductionPierce = 0f;
             thorns = 0f;
+            thornsPercent = 1f;
             selfThorns = false;
             selfThornsPercent = 1f;
             noHeal = false;
@@ -55,7 +59,9 @@ namespace PSA.Extensions
             __instance.GetAdditionalData().healReduction = 1f;
             __instance.GetAdditionalData().healDmgPercent = 1f;
             __instance.GetAdditionalData().damageReduction = 1f;
+            __instance.GetAdditionalData().reductionPierce = 0f;
             __instance.GetAdditionalData().thorns = 0f;
+            __instance.GetAdditionalData().thornsPercent = 1f;
             __instance.GetAdditionalData().selfThorns = false;
             __instance.GetAdditionalData().selfThornsPercent = 1f;
             __instance.GetAdditionalData().noHeal = false;
