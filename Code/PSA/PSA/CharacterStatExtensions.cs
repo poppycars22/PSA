@@ -18,6 +18,9 @@ namespace PSA.Extensions
         public float selfThornsPercent;
         public float thornsPercent;
         public bool noHeal;
+        public float damageMult;
+        public bool lethalThorns;
+        public bool lethalSelfThorns;
         public CharacterStatModifiersAdditionalData()
         {
             healDmg = false;
@@ -30,6 +33,9 @@ namespace PSA.Extensions
             selfThorns = false;
             selfThornsPercent = 1f;
             noHeal = false;
+            damageMult = 1f;
+            lethalThorns = false;
+            lethalSelfThorns = false;
         }
     }
     public static class CharacterStatModifiersExtension
@@ -65,6 +71,9 @@ namespace PSA.Extensions
             __instance.GetAdditionalData().selfThorns = false;
             __instance.GetAdditionalData().selfThornsPercent = 1f;
             __instance.GetAdditionalData().noHeal = false;
+            __instance.GetAdditionalData().damageMult = 1f;
+            __instance.GetAdditionalData().lethalThorns = false;
+            __instance.GetAdditionalData().lethalSelfThorns = false;
         }
     }
 }

@@ -29,6 +29,7 @@ namespace PSA.Patches
             {
                 return;
             }
+            damage *= player.data.stats.GetAdditionalData().damageMult;
             if (player.data.stats.GetAdditionalData().damageReduction > 1 && damagingPlayer!=null)
                 temp = player.data.stats.GetAdditionalData().damageReduction - (player.data.stats.GetAdditionalData().damageReduction * damagingPlayer.data.stats.GetAdditionalData().reductionPierce);
             else
@@ -36,9 +37,9 @@ namespace PSA.Patches
             if (temp > 0)
                 damage /= temp;
             if (damagingPlayer != null && player.data.stats.GetAdditionalData().thorns > 0)
-                damagingPlayer.data.healthHandler.DoDamage(damage * player.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().thornsPercent, Vector2.down, Color.green, null, null, false, false, true);
+                damagingPlayer.data.healthHandler.DoDamage(damage * player.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().thornsPercent, Vector2.down, Color.green, null, null, false, damagingPlayer.data.stats.GetAdditionalData().lethalThorns, true);
             if (damagingPlayer != null && damagingPlayer.data.stats.GetAdditionalData().thorns > 0 && damagingPlayer.data.stats.GetAdditionalData().selfThorns)
-                damagingPlayer.data.healthHandler.DoDamage(damage * (damagingPlayer.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent), Vector2.down, Color.green, null, null, false, false, true);
+                damagingPlayer.data.healthHandler.DoDamage(damage * (damagingPlayer.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent), Vector2.down, Color.green, null, null, false, damagingPlayer.data.stats.GetAdditionalData().lethalSelfThorns, true);
         }
     }
 
