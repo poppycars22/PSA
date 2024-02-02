@@ -36,10 +36,10 @@ namespace PSA.Patches
                 temp = player.data.stats.GetAdditionalData().damageReduction;
             if (temp > 0)
                 damage /= temp;
-            if (damagingPlayer != null && player.data.stats.GetAdditionalData().thorns > 0)
-                damagingPlayer.data.healthHandler.DoDamage(damage * player.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().thornsPercent, Vector2.down, Color.green, null, null, false, damagingPlayer.data.stats.GetAdditionalData().lethalThorns, true);
-            if (damagingPlayer != null && damagingPlayer.data.stats.GetAdditionalData().thorns > 0 && damagingPlayer.data.stats.GetAdditionalData().selfThorns)
-                damagingPlayer.data.healthHandler.DoDamage(damage * (damagingPlayer.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent), Vector2.down, Color.green, null, null, false, damagingPlayer.data.stats.GetAdditionalData().lethalSelfThorns, true);
+            if (damagingPlayer != null && player.data.stats.GetAdditionalData().thorns > 0 && player.playerID != damagingPlayer.playerID)
+                damagingPlayer.data.healthHandler.CallTakeDamage(damage * player.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().thornsPercent, Vector2.down, null, null, damagingPlayer.data.stats.GetAdditionalData().lethalThorns);
+            if (damagingPlayer != null && damagingPlayer.data.stats.GetAdditionalData().thorns > 0 && damagingPlayer.data.stats.GetAdditionalData().selfThorns && player.playerID!=damagingPlayer.playerID)
+                damagingPlayer.data.healthHandler.CallTakeDamage(damage * (damagingPlayer.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent), Vector2.down, null, null, damagingPlayer.data.stats.GetAdditionalData().lethalSelfThorns);
         }
     }
 
