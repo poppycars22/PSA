@@ -23,7 +23,7 @@ namespace PSA
     {
         private const string ModId = "com.Poppycars.PSA.Id";
         private const string ModName = "PoppycarsStatAdditions";
-        public const string Version = "0.0.6"; // What version are we on (major.minor.patch)?
+        public const string Version = "0.0.7"; // What version are we on (major.minor.patch)?
         public const string ModInitials = "PSA";
 
         internal static List<BaseUnityPlugin> plugins;

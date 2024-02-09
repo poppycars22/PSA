@@ -12,6 +12,7 @@ namespace PSA.Extensions
         public float healDmgPercent;
         public float healReduction;
         public float damageReduction;
+        public float damageReductionFlat;
         public float reductionPierce;
         public float thorns;
         public bool selfThorns;
@@ -27,6 +28,7 @@ namespace PSA.Extensions
             healDmgPercent = 1f;
             healReduction = 1f;
             damageReduction = 1f;
+            damageReductionFlat = 0f;
             reductionPierce = 0f;
             thorns = 0f;
             thornsPercent = 1f;
@@ -65,6 +67,7 @@ namespace PSA.Extensions
             __instance.GetAdditionalData().healReduction = 1f;
             __instance.GetAdditionalData().healDmgPercent = 1f;
             __instance.GetAdditionalData().damageReduction = 1f;
+            __instance.GetAdditionalData().damageReductionFlat = 0f;
             __instance.GetAdditionalData().reductionPierce = 0f;
             __instance.GetAdditionalData().thorns = 0f;
             __instance.GetAdditionalData().thornsPercent = 1f;
