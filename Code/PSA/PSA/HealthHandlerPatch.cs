@@ -17,7 +17,8 @@ namespace PSA.Patches
             float temp =1;
             CharacterData data = (CharacterData)Traverse.Create(__instance).Field("data").GetValue();
             Player player = data.player;
-            damage = new Vector2(Math.Abs(damage.x) + Math.Abs(damage.y), 0);
+            //damage = new Vector2(Math.Abs(damage.x) + Math.Abs(damage.y), 0);
+
             if (!data.isPlaying)
             {
                 return;
