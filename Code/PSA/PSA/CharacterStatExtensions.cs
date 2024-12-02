@@ -22,6 +22,7 @@ namespace PSA.Extensions
         public float damageMult;
         public bool lethalThorns;
         public bool lethalSelfThorns;
+        public float slowThorns;
         public CharacterStatModifiersAdditionalData()
         {
             healDmg = false;
@@ -38,6 +39,7 @@ namespace PSA.Extensions
             damageMult = 1f;
             lethalThorns = false;
             lethalSelfThorns = false;
+            slowThorns = 0f;
         }
     }
     public static class CharacterStatModifiersExtension
@@ -77,6 +79,7 @@ namespace PSA.Extensions
             __instance.GetAdditionalData().damageMult = 1f;
             __instance.GetAdditionalData().lethalThorns = false;
             __instance.GetAdditionalData().lethalSelfThorns = false;
+            __instance.GetAdditionalData().slowThorns = 0f;
         }
     }
 }
