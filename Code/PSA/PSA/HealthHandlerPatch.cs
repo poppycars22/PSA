@@ -50,9 +50,9 @@ namespace PSA.Patches
                 damagingPlayer.data.healthHandler.TakeDamage(dmg2becauseunityisstupid * (damagingPlayer.data.stats.GetAdditionalData().thorns*damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent), Vector2.down, Color.green, null, null, damagingPlayer.data.stats.GetAdditionalData().lethalSelfThorns, true);
 
                 if (damagingPlayer != null && player.data.stats.GetAdditionalData().slowThorns > 0 && player.playerID != damagingPlayer.playerID)
-                    damagingPlayer.data.stats.RPCA_AddSlow(player.data.stats.GetAdditionalData().slowThorns * damagingPlayer.data.stats.GetAdditionalData().thornsPercent, false);
+                    damagingPlayer.data.stats.RPCA_AddSlow(dmg2becauseunityisstupid.magnitude * player.data.stats.GetAdditionalData().slowThorns * damagingPlayer.data.stats.GetAdditionalData().thornsPercent, false);
                 if (damagingPlayer != null && damagingPlayer.data.stats.GetAdditionalData().slowThorns > 0 && damagingPlayer.data.stats.GetAdditionalData().selfThorns && player.playerID != damagingPlayer.playerID)
-                    damagingPlayer.data.stats.RPCA_AddSlow(player.data.stats.GetAdditionalData().slowThorns * damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent, false);
+                    damagingPlayer.data.stats.RPCA_AddSlow(dmg2becauseunityisstupid.magnitude * player.data.stats.GetAdditionalData().slowThorns * damagingPlayer.data.stats.GetAdditionalData().selfThornsPercent, false);
             });
         }
     }
